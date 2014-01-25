@@ -3,27 +3,34 @@
 
 using namespace CORE;
 
+void CORERobot::requirePneumatics(void){
+	if(!compressor) {
+		compressor = new Compressor(1, 1);
+		cout << "Compressor addr: " << compressor << endl;
+	}
+}
+
 void CORERobot::add(CORESubsystem& subsystem){
 	subsystems.push_back(&subsystem);
 }
 
-std::vector<CORESubsystem*>& CORERobot::get_subsystems(void){
+std::vector<CORESubsystem*>& CORERobot::getSubsystems(void){
 	return subsystems;
 }
 
-void CORERobot::robot_init(void){
+void CORERobot::robotInit(void){
 	std::vector<CORESubsystem*>::iterator it;
 		for(it = subsystems.begin(); it != subsystems.end(); ++it){
-			cout << "robot init " << (*it)->name() << endl;
-			(*it)->robot_init();
+//			cout << "robot init " << (*it)->name() << endl;
+			(*it)->robotInit();
 		}
 }
 
-void CORERobot::teleop_init(void){
+void CORERobot::teleopInit(void){
 	std::vector<CORESubsystem*>::iterator it;
 	for(it = subsystems.begin(); it != subsystems.end(); ++it){
-		cout << "tele init " << (*it)->name() << endl;
-		(*it)->teleop_init();
+//		cout << "tele init " << (*it)->name() << endl;
+		(*it)->teleopInit();
 	}
 }
 
@@ -31,20 +38,20 @@ void CORERobot::teleop(){
 	std::vector<CORESubsystem*>::iterator it;
 	joystick.update_cache();
 	for (it = subsystems.begin(); it != subsystems.end(); ++it){
-		cout << "teleop" << (*it)->name() << endl;
+//		cout << "teleop " << (*it)->name() << endl;
 		(*it)->teleop();
 	}
 }
 
 std::string CORESubsystem::name(void){
-	return "undefined name";
+	return "undefined";
 }
 
-void CORESubsystem::robot_init(void){
+void CORESubsystem::robotInit(void){
 	printf("Unimplemented robot_init\n");
 }
 
-void CORESubsystem::teleop_init(void){
+void CORESubsystem::teleopInit(void){
 	printf("Unimplemented teleop_init\n");
 }
 

@@ -16,18 +16,27 @@ class CORERobot {
 	std::vector<CORESubsystem*> subsystems;
 public:
 	JoystickCache joystick;
+	Compressor* compressor;
+	
 	CORERobot():
 		subsystems(),
-		joystick()
+		joystick(),
+		compressor(0)
 	{}
 	
 	void add(CORESubsystem& subsystem);
 	
-	std::vector<CORESubsystem*>& get_subsystems(void);
+	std::vector<CORESubsystem*>& getSubsystems(void);
 	
-	void robot_init(void);
-	void teleop_init(void);
+	void robotInit(void);
+	void teleopInit(void);
 	void teleop(void);
+	
+	~CORERobot(){
+		delete compressor;
+	}
+	
+	void requirePneumatics(void);
 };
 
 class CORESubsystem{
@@ -42,9 +51,9 @@ class CORESubsystem{
 	virtual ~CORESubsystem(){};	// Suppresses GNU GCC warning. Can be removed under GCC version 4.3
 	
 	// Called before loop at start of Teleop period
-	virtual void robot_init(void) = 0;
+	virtual void robotInit(void) = 0;
 	
-	virtual void teleop_init(void) = 0;
+	virtual void teleopInit(void) = 0;
 	
 	//Called sequentially during loop, interleaved with other subsystems
 	virtual void teleop(void) = 0;
