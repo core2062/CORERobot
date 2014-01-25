@@ -5,17 +5,36 @@
 
 namespace CORE {
 
-// class to support driving two jaguars from one PIDController
-class COREDrivePIDOut : public PIDOutput {
-	Jaguar *front;
-	Jaguar *rear;
+class DoubleSpeed : public SpeedController {
 public:
+	SpeedController& one;
+	SpeedController& two;
+	DoubleSpeed(SpeedController& one, SpeedController& two):
+		one(one),
+		two(two)
+	{}
 	
-	COREDrivePIDOut(Jaguar *f, Jaguar *r){
-		front = f;
-		rear = r;
-	};
-	void PIDWrite (float output);
+	virtual void Set(float speed, uint8_t syncGroup=0){
+		one.Set(speed, syncGroup);
+		two.Set(speed, syncGroup);
+	}
+	
+	virtual float Get(){
+		float n = 0;
+		n += one.Get();
+		n += two.Get();
+		return n/2;
+	}
+	
+	virtual void Disable(){
+		one.Disable();
+		two.Disable();
+	}
+	
+	virtual void PIDWrite(float output){
+		Set(output);
+	}
+
 };
 
 class COREDrive : public RobotDrive {
@@ -27,6 +46,8 @@ public:
 	
 	void EtherArcade(double mag, double rotate, double a, double b);
 	void ArcadeDrive(float moveValue, float rotateValue, bool squaredInputs = false);
+	void CulverDrive(float throttle, float steer_x, float steer_y, bool quickturn,
+		double gain_radius, double gain_raw );
 };
 
 class CORERateLimiter{
