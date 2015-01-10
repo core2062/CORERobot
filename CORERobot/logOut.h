@@ -1,26 +1,26 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef LOGOUT_H
+#define LOGOUT_H
 
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <stdio.h>
 
-class log {
+class logOut {
 	private:
     	std::string fileName;
-    	ofstream outFile;
+    	std::ofstream outFile;
 	public:
-    	log(){
+    	logOut(){
     		createFile();
     	}
     	void createFile();
     	void throwLog(std::string s);
-		~log(){
+		~logOut(){
 			outFile.close();
 		}
-	
-	
+
+
 };
 
 #endif

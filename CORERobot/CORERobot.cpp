@@ -3,13 +3,6 @@
 
 using namespace CORE;
 
-void CORERobot::requirePneumatics(void){
-	if(!compressor) {
-		compressor = new Compressor(1, 1);
-		cout << "Compressor addr: " << compressor << endl;
-	}
-}
-
 void CORERobot::add(CORESubsystem& subsystem){
 	subsystems.push_back(&subsystem);
 }

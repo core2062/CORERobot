@@ -1,6 +1,8 @@
-#include "log.h"
+#include <iostream>
 
-void log::createFile(){
+#include "logOut.h"
+using namespace std;
+void logOut::createFile(){
 
 
 		remove("\\logs\\robotLog10.txt");
@@ -20,7 +22,7 @@ void log::createFile(){
 	    }
 	    outFile << "Log File Successfully Created!" << std::endl;
 }
-void log::throwLog(std::string s){
+void logOut::throwLog(std::string s){
 	// std::cout << "Writing " << s.c_str() << " to log" << std::endl;
 	outFile << s.c_str() << std::endl;
 }

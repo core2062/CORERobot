@@ -84,11 +84,11 @@ void COREDrive::ArcadeDrive(float moveValue, float rotateValue, bool squaredInpu
 		if (rotateValue > 0.0)
 		{
 			leftMotorOutput = moveValue - rotateValue;
-			rightMotorOutput = max(moveValue, rotateValue);
+//			rightMotorOutput = max(moveValue, rotateValue);
 		}
 		else
 		{
-			leftMotorOutput = max(moveValue, -rotateValue);
+//			leftMotorOutput = max(moveValue, -rotateValue);
 			rightMotorOutput = moveValue + rotateValue;
 		}
 	}
@@ -96,13 +96,13 @@ void COREDrive::ArcadeDrive(float moveValue, float rotateValue, bool squaredInpu
 	{
 		if (rotateValue > 0.0)
 		{
-			leftMotorOutput = - max(-moveValue, rotateValue);
+//			leftMotorOutput = - max(-moveValue, rotateValue);
 			rightMotorOutput = moveValue + rotateValue;
 		}
 		else
 		{
 			leftMotorOutput = moveValue - rotateValue;
-			rightMotorOutput = - max(-moveValue, -rotateValue);
+//			rightMotorOutput = - max(-moveValue, -rotateValue);
 		}
 	}
 	SetLeftRightMotorOutputs(leftMotorOutput, rightMotorOutput);

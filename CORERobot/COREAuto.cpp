@@ -1,5 +1,6 @@
 #include "COREAuto.h"
 #include "WPILib.h"
+#include <iostream>
 using namespace CORE;
 
 Action::Action(void){};
@@ -38,11 +39,11 @@ void AutoSequencer::add_action(Action* action){
 void AutoSequencer::iter(void){
 //	cout<<"iter start"<<endl;
 	if(aqueue.empty()){
-		cout << "No remaining auto actions!"<<endl;	
+		std::cout << "No remaining auto actions!"<<std::endl;
 		return;
 	}
 	Action* a = aqueue.front();
-	cout <<a<<endl;
+	std::cout <<a<<std::endl;
 	Action::ControlFlow return_val = a->call();
 	
 //	cout<<"after action"<<endl;

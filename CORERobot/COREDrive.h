@@ -39,7 +39,7 @@ public:
 
 class COREDrive : public RobotDrive {
 public:
-	COREDrive::COREDrive(SpeedController &leftMotor, SpeedController &rightMotor):
+	/*COREDrive::*/COREDrive(SpeedController &leftMotor, SpeedController &rightMotor):
 			RobotDrive(leftMotor, rightMotor){
 			
 			}
@@ -55,9 +55,9 @@ class CORERateLimiter{
 	float old;
 public:
 
-	CORERateLimiter(float increment){
+	CORERateLimiter(float incremen){
 		old = 0;
-		increment = increment;
+		increment = incremen;
 	}
 	
 	float limit(float input){

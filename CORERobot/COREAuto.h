@@ -24,7 +24,7 @@ class Action{
 			BACKGROUND
 		};
 		Action();
-		virtual ControlFlow call(void){cout << "action base class operator"<< endl; return END;} // =0
+		virtual ControlFlow call(void){std::cout << "action base class operator"<< std::endl; return END;} // =0
 		virtual void init(void){}
 		virtual ~Action(){}
 	};
